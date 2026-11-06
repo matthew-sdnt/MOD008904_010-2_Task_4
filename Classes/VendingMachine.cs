@@ -13,6 +13,15 @@ namespace Task_4.Classes
         List<Extra> extras;
         StreamWriter stream;
 
+        //Properties
+        public int DrinkNum {
+            get { return drinks.Count; }
+        }
+        public int ExtrasNum
+        {
+            get { return extras.Count; }
+        }
+
         //Constructor
         public VendingMachine(string p_log_file)
         {

@@ -106,19 +106,23 @@ namespace Task_4.Classes
             stream.Flush();
             return p_payment;
         }
-        public void list_drinks()
+        public string list_drinks()
         {
+            string str = "";
             for (int i = 0; i < drinks.Count; i++)
             {
-                Console.WriteLine($"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price}, stock left: {drinks[i].Stock}");
+                str = str + $"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price}, stock left: {drinks[i].Stock}";
             }
+            return str;
         }
-        public void list_extras()
+        public string list_extras()
         {
+            string str = "";
             for (int i = 0; i < extras.Count; i++)
             {
-                Console.WriteLine($"Extra {i + 1}: {extras[i].Name}, price: {extras[i].Price}, stock left: {extras[i].Stock}");
+                str = str + $"Extra {i + 1}: {extras[i].Name}, price: {extras[i].Price}, stock left: {extras[i].Stock}\n";
             }
+            return str;
         }
     }
 }

@@ -11,9 +11,10 @@ namespace Task_4.Classes
         //Fields
         List<Drink> drinks;
         List<Extra> extras;
+        StreamWriter stream;
 
         //Constructor
-        public VendingMachine()
+        public VendingMachine(string p_log_file)
         {
             drinks = new List<Drink>();
             drinks.Add(new Tea()); //Leaving blank so the class will use its default stock amount.
@@ -23,11 +24,23 @@ namespace Task_4.Classes
             extras.Add(new ExtraHot());
             extras.Add(new Milk());
             extras.Add(new Sugar());
+
+            if (!File.Exists(p_log_file))
+            {
+                stream = new StreamWriter(p_log_file);
+                stream.Write("Drink Name,Extras,Total Price,Inputted Total,Refund Total");
+                stream.Flush();
+            }
+            else
+            {
+                stream = new StreamWriter(p_log_file);
+            }
         }
 
         //Behaviours
         public double buy_drink(int p_selection, List<int> p_addons, double p_payment)
         {
+            double original_payment = p_payment;
             double total_price = drinks[p_selection - 1].Price;
             bool enough_extra_stock = true;
 
@@ -79,6 +92,9 @@ namespace Task_4.Classes
             }
 
             Console.WriteLine($"Returning unused {p_payment}.");
+
+            stream.WriteLine($"{drinks[p_selection - 1].Name},{extras.ToString().Replace(",", "")},{total_price},{original_payment},{p_payment}");
+            stream.Flush();
             return p_payment;
         }
         public void list_drinks()

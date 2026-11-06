@@ -36,13 +36,13 @@ namespace Task_4.Classes
 
             if (!File.Exists(p_log_file))
             {
-                stream = new StreamWriter(p_log_file);
-                stream.Write("Drink Name,Extras,Total Price,Inputted Total,Refund Total");
+                stream = new StreamWriter(p_log_file, append: true);
+                stream.WriteLine("Drink Name,Extras,Total Price,Inputted Total,Refund Total");
                 stream.Flush();
             }
             else
             {
-                stream = new StreamWriter(p_log_file);
+                stream = new StreamWriter(p_log_file, append: true);
             }
         }
 
@@ -111,7 +111,7 @@ namespace Task_4.Classes
             string str = "";
             for (int i = 0; i < drinks.Count; i++)
             {
-                str = str + $"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price}, stock left: {drinks[i].Stock}";
+                str = str + $"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price}, stock left: {drinks[i].Stock}\n";
             }
             return str;
         }

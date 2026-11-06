@@ -102,16 +102,22 @@ namespace Task_4.Classes
 
             Console.WriteLine($"Returning unused {p_payment}.");
 
-            stream.WriteLine($"{drinks[p_selection - 1].Name},{extras.ToString().Replace(",", "")},{total_price},{original_payment},{p_payment}");
+            string extra = "";
+            for (int i = 0; i < p_addons.Count; i++)
+            {
+                extra = extra + p_addons[i];
+            }
+
+            stream.WriteLine($"{drinks[p_selection - 1].Name},{extra},{total_price},{original_payment},{p_payment}");
             stream.Flush();
             return p_payment;
         }
-        public string list_drinks()
+        public string list_drinks() 
         {
             string str = "";
             for (int i = 0; i < drinks.Count; i++)
             {
-                str = str + $"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price}, stock left: {drinks[i].Stock}\n";
+                str = str + $"Drink {i + 1}: {drinks[i].Name}, price: {drinks[i].Price:0.00}, stock left: {drinks[i].Stock}\n";
             }
             return str;
         }
@@ -120,7 +126,7 @@ namespace Task_4.Classes
             string str = "";
             for (int i = 0; i < extras.Count; i++)
             {
-                str = str + $"Extra {i + 1}: {extras[i].Name}, price: {extras[i].Price}, stock left: {extras[i].Stock}\n";
+                str = str + $"Extra {i + 1}: {extras[i].Name}, price: {extras[i].Price:0.00}, stock left: {extras[i].Stock}\n";
             }
             return str;
         }

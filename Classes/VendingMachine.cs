@@ -14,12 +14,12 @@ namespace Task_4.Classes
         StreamWriter stream;
 
         //Properties
-        public int DrinkNum {
-            get { return drinks.Count; }
+        public List<Drink> Drinks {
+            get { return this.drinks; }
         }
-        public int ExtrasNum
+        public List<Extra> Extras
         {
-            get { return extras.Count; }
+            get { return this.extras; }
         }
 
         //Constructor
